@@ -8,9 +8,9 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   build: {
-    outDir: 'dist', // Make sure build output goes to 'dist'
+    outDir: 'dist',
     rollupOptions: {
-      input: 'index.html', // Specify the entry point
+      input: 'index.html', 
     },
   },
 });

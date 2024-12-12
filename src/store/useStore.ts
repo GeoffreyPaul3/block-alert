@@ -22,16 +22,21 @@ interface Store {
 
 export const useStore = create<Store>((set) => ({
   coins: [],
-  favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
+  // Only access localStorage on the client side
+  favorites: typeof window !== 'undefined'
+    ? JSON.parse(localStorage.getItem('favorites') || '[]')
+    : [],
   notifications: [],
-  darkMode: JSON.parse(localStorage.getItem('darkMode') || 'false'),
+  darkMode: typeof window !== 'undefined'
+    ? JSON.parse(localStorage.getItem('darkMode') || 'false')
+    : false,
   isLoading: false,
   error: null,
   search: '',
-  
+
   setSearch: (search) => set({ search }),
   setCoins: (coins) => set({ coins }),
-  
+
   toggleFavorite: (coinId) =>
     set((state) => {
       const newFavorites = state.favorites.includes(coinId)
@@ -40,7 +45,7 @@ export const useStore = create<Store>((set) => ({
       localStorage.setItem('favorites', JSON.stringify(newFavorites));
       return { favorites: newFavorites };
     }),
-    
+
   addNotification: (message) =>
     set((state) => ({
       notifications: [
@@ -53,14 +58,14 @@ export const useStore = create<Store>((set) => ({
         ...state.notifications,
       ].slice(0, APP_CONFIG.MAX_NOTIFICATIONS),
     })),
-    
+
   markNotificationAsRead: (id) =>
     set((state) => ({
       notifications: state.notifications.map((n) =>
         n.id === id ? { ...n, read: true } : n
       ),
     })),
-    
+
   toggleDarkMode: () =>
     set((state) => {
       const newDarkMode = !state.darkMode;

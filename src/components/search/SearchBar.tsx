@@ -3,10 +3,10 @@ import { Search as SearchIcon, X as ClearIcon } from 'lucide-react';
 import { useStore } from '../../store/useStore';
 
 export const SearchBar: React.FC = () => {
-  const { search, setSearch } = useStore();
+  const { search, setSearch } = useStore(); // Get search and setSearch from the store
 
   const handleClear = () => {
-    setSearch('');
+    setSearch(''); // Clear search input
   };
 
   return (
@@ -15,7 +15,7 @@ export const SearchBar: React.FC = () => {
       <input
         type="text"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)} // Update search state on input change
         placeholder="Search cryptocurrencies..."
         className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
       />

@@ -10,13 +10,14 @@ import { fetchCoins } from './services/api';
 function App() {
   const { coins, setCoins, darkMode, toggleDarkMode, favorites, addNotification } = useStore();
   const [search, setSearch] = useState('');
-  
+
   useEffect(() => {
+    // Fetch coins data
     const fetchData = async () => {
       try {
         const data = await fetchCoins();
         setCoins(data);
-        
+
         // Check for significant price changes
         data.forEach((coin) => {
           if (Math.abs(coin.price_change_percentage_24h) > 10) {
@@ -27,7 +28,6 @@ function App() {
             );
           }
         });
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         toast.error('Failed to fetch cryptocurrency data');
       }
@@ -55,6 +55,20 @@ function App() {
   // Get favorite coins
   const favoriteCoins = coins.filter((coin) => favorites.includes(coin.id));
 
+  // Effect to initialize darkMode from localStorage
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (storedDarkMode !== darkMode) {
+      toggleDarkMode(); // Set it from localStorage
+    }
+  }, [darkMode, toggleDarkMode]);
+
+  // Persist darkMode setting to localStorage
+  const handleToggleDarkMode = () => {
+    toggleDarkMode();
+    localStorage.setItem('darkMode', (!darkMode).toString());
+  };
+
   return (
     <div className={darkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 sm:p-6">
@@ -62,7 +76,7 @@ function App() {
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold dark:text-white">Block Alert</h1>
             <button
-              onClick={toggleDarkMode}
+              onClick={handleToggleDarkMode} // Toggle dark mode on button click
               className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-md"
             >
               {darkMode ? (

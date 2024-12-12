@@ -1,50 +1,25 @@
-# React + TypeScript + Vite
+Block Alert 🚀
+Block Alert is a React-based cryptocurrency dashboard designed to help users stay updated with real-time crypto prices, track top and low-performing coins, and receive timely notifications on market changes. This project was built as a final internship project for FlexiSAF.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+Real-time Crypto Updates: View live prices, market caps, and volume for various cryptocurrencies.
+Search Functionality: Quickly search for specific coins by name or symbol.
+Top/Low Performers: Track the top 5 highest gainers and biggest losers in the market.
+Notifications: Receive real-time alerts about significant price changes or trends.
+Light/Dark Mode: Toggle between light and dark themes for improved user experience.
+Customizable Alerts: Favorite your preferred coins and customize notifications.
+Responsive Design: Fully optimized for mobile and desktop views.
+Project Overview
+This project serves as a final internship submission for FlexiSAF and addresses several key challenges that cryptocurrency investors and enthusiasts face, such as tracking multiple currencies, receiving timely alerts, and accessing relevant information easily.
 
-Currently, two official plugins are available:
+The app uses a free cryptocurrency API to fetch real-time data, offering a seamless experience to users for tracking and analyzing cryptocurrency market trends.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Tech Stack
+Frontend: React (with Hooks and Context API)
+API: CoinGecko (or any free crypto data API)
+Styling: Tailwind CSS (with custom light/dark mode)
+State Management: useState, useEffect, Context API
+Routing: React Router (optional, if multi-page routing is implemented)
+Notifications: Browser notifications/local storage
+Icons: React Icons
+Version Control: Git/GitHub
